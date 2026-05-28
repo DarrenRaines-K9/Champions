@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+
+# Environment secrets — never commit
+backend/.env
+frontend/.env.local
+
+# Django
+backend/staticfiles/
+*.sqlite3
+
+# Node
+node_modules/
+frontend/.next/
+
+# Backups
+*.sql
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+*.swp
+
+docs/
+.claude/
+.tandem/
+tandem.json
+.ruff_cache/

@@ -1,0 +1,63 @@
+[project]
+name = "champions-backend"
+version = "0.1.0"
+description = "Champions in Christ — volunteer coordination platform backend"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.0.5",
+    "django-cors-headers>=4.9.0",
+    "django-pandas>=0.6.7",
+    # PINNED — breaking changes shipped in minor versions; upgrade only after reading
+    # full changelog, running the test suite, and taking a database backup.
+    # Pinned at init: django-ratelimit==4.1.0, django-safedelete==1.4.1,
+    # django-simple-history==3.11.0, djangorestframework-simplejwt==5.5.1
+    "django-ratelimit==4.1.0",
+    "django-safedelete==1.4.1",
+    "django-simple-history==3.11.0",
+    "djangorestframework>=3.17.1",
+    "djangorestframework-simplejwt==5.5.1",
+    "google-auth>=2.53.0",
+    "loguru>=0.7.3",
+    "pandas>=3.0.3",
+    "pillow>=12.2.0",
+    "psycopg2-binary>=2.9.12",
+    "python-decouple>=3.8",
+    "sentry-sdk[django]>=2.61.0",
+]
+
+[dependency-groups]
+dev = [
+    "detect-secrets>=1.5.0",
+    "factory-boy>=3.3.3",
+    "pre-commit>=4.6.0",
+    "pytest>=9.0.3",
+    "pytest-django>=4.12.0",
+    "ruff>=0.15.15",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "SIM", # flake8-simplify
+    "DJ",  # flake8-django
+]
+ignore = [
+    "E501",  # line-too-long handled by formatter
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "volunteers", "events", "locations", "analytics", "api"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.settings.dev"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
